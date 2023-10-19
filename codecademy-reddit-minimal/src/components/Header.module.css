@@ -1,0 +1,33 @@
+header {
+    background-color: white;
+    height: 75px;
+    width: 100%;
+    box-shadow: 0px 0px 20px 0px;
+    margin-bottom: 20px;
+    display: inline-flex;
+    flex-wrap: wrap;
+    align-content: center;
+    justify-content: space-between;
+  }
+  
+  .header {
+    margin: 0px 20px;
+    height: 30px;
+  }
+  
+  .logo{
+    color: orangered;
+    font-family: sans-serif;
+  }
+  
+  span {
+    color: black;
+    font-family: sans;
+  }
+  
+  .search {
+    min-width: 50px;
+    flex-grow: 2;
+    border-radius: 25px;
+    text-indent: 10px;
+  }
