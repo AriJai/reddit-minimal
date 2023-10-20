@@ -2,7 +2,7 @@ header {
     background-color: white;
     height: 75px;
     width: 100%;
-    box-shadow: 0px 0px 20px 0px;
+    box-shadow: 5px 7px 10px gray;
     margin-bottom: 20px;
     display: inline-flex;
     flex-wrap: wrap;
