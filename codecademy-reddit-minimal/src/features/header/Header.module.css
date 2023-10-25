@@ -31,7 +31,12 @@ span {
 }
 
 .search {
-  width: 400px;
   border-radius: 25px;
   text-indent: 10px;
+  flex-grow: 1;
+}
+
+.form {
+  display: flex;
+  flex-grow: 1;
 }

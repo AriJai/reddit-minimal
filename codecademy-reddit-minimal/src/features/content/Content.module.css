@@ -1,9 +1,24 @@
 .container {
-    min-width: 599px;
+    min-width: 100%;
     height: auto;
 
     background-color: white;
     box-shadow: 5px 7px 10px gray;
     border-radius: 5px;
     margin-top: 20px;
+    display: flex;
+    flex-grow: 2;
+    flex-direction:column;
+}
+
+.contentContainer{
+    display: grid;
+    border: 1px solid green;
+    padding: 10px;
+    justify-content: center;
+    align-items: center;
+}
+
+.image {
+    width: 60%;
 }

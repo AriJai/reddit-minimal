@@ -13,11 +13,11 @@ function App() {
   return (
     <div className="App">
       <Header />
-      <div className="container">
+      <main className="container">
         <Sidebar />
         <Content />
         <Subreddit />
-      </div>
+      </main>
     </div>
   );
 }

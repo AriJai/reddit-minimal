@@ -10,4 +10,5 @@ body {
 .container{
   display: flex;
   justify-content: center;
+  margin-inline: 20%;
 }

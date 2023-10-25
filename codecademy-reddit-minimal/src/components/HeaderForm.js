@@ -8,7 +8,7 @@ export default function HeaderForm(){
     const [search, setSearch] = useState('');
     const handleSubmit=(e)=>{};
     return (
-        <form onSubmit={handleSubmit}>
+        <form onSubmit={handleSubmit} className={styles.form}>
             <input 
                 className={`${styles.header} ${styles.search}`}
                 id="searchTerm"
