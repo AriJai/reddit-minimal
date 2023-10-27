@@ -7,18 +7,20 @@
     margin-top: 20px;
     display: flex;
     flex-grow: 2;
+    flex-shrink: 1;
     flex-direction:column;
 }
 
 .contentContainer{
     display: grid;
-    grid-template-rows: 20px auto auto auto auto auto auto;
+    grid-template-rows: 40px auto auto auto;
     background-color: white;
     box-shadow: 5px 7px 10px gray;
     border-radius: 20px;
     padding: 10px;
     gap: 10px;
     margin: 10px;
+    min-width: 0px;
 }
 
 .image {
@@ -44,6 +46,19 @@
     width: 90%;
     text-wrap: wrap;
     padding: 20px;
+}
+
+.commentButton {
+    border: 2px solid black;
+    border-radius: 20px;
+    width: 100px;
+    font-size: 10px;
+    font-weight: 600;
+}
+
+.commentButton:hover {
+    content: see comments;
+    background-color: lightgrey;
 }
 
 .link {

@@ -9,6 +9,7 @@
     margin: 100px 20px 0px 20px;
     box-shadow: 5px 7px 10px gray;
     border-radius: 5px;
+    flex-shrink: 2;
 }
 
 .title{

@@ -7,6 +7,7 @@
     box-shadow: 5px 7px 10px gray;
     border: 1px solid black;
     border-radius: 5px;
+    flex-shrink: 2;
 }
   
 .box{
@@ -14,12 +15,15 @@
     top:0px;
     width: 250px;
     height: auto;
-    border: 2px dotted green;
+    border-bottom: 1px solid lightgrey;
+    border-bottom-width: 90%;
+    background-color: white;
+    border-radius: 5px;
 }
   
 .filler{
     flex: 1;
-    background-color: lightblue;
+    background-color: white;
     width: auto;
     height: auto;
 }

@@ -20,7 +20,7 @@ export default function HeaderForm(){
                 value={search}
                 onChange={(e) => setSearch(e.target.value)}
                 type='text'
-                placeholder='Find a Subreddit'
+                placeholder='Find a Subreddit e.g. "popular"'
             />
         </form>
     )

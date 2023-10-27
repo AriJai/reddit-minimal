@@ -10,10 +10,10 @@ function ContentListItem({post}) {
     return (
         <article key={post.id} className={styles.contentContainer} >
             <div className={styles.header}>
-                <h6><a className={styles.link} href={`https://www.reddit.com/${post.subreddit_name_prefixed}`}>{post.subreddit_name_prefixed}</a></h6>
-                <h5>By: <a className={styles.link} href={`https://www.reddit.com/user/${post.author}`}>{post.author}</a></h5>
+                <h6><a className={styles.link} href={`https://www.reddit.com/${post.subreddit_name_prefixed}`} target={'_blank'}>{post.subreddit_name_prefixed}</a></h6>
+                <h5>By: <a className={styles.link} href={`https://www.reddit.com/user/${post.author}`} target={'_blank'}>{post.author}</a></h5>
             </div>
-            <h2 className={styles.title}><a className={styles.link} href={`https://www.reddit.com${post.permalink}`}>{post.title}</a></h2>
+            <h2 className={styles.title}><a className={styles.link} href={`https://www.reddit.com${post.permalink}`} target={'_blank'}>{post.title}</a></h2>
             {
                 post.url.includes(`.jpg`) &&
                     <img src={post.url} className={styles.image} alt='' />
@@ -40,9 +40,10 @@ function ContentListItem({post}) {
             }
             {
                 post.selftext ? 
-                    <div className={styles.markdown} remarkPlugins={[remarkGfm]}><Markdown>{post.selftext}</Markdown></div> 
+                    <div className={styles.markdown}><Markdown>{post.selftext}</Markdown></div> 
                     : null
             }
+            <button className={styles.commentButton}>{post.num_comments} comments</button>
         </article>
     )
 };

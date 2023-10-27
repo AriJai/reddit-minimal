@@ -25,10 +25,10 @@ const Content = () => {
 
 
     if (isLoadingContent){
-        return <div>...Loading Reddit</div>
+        return <div style={{minWidth:'100%'}}>...Loading Reddit</div>
     }
     else if (containsError){
-        return <div>...Sorry, this subreddit is unavailable!</div>
+        return <div style={{minWidth:'100%'}}>...Sorry, this subreddit is unavailable!</div>
     }
     return (
         <section className={styles.container}>
