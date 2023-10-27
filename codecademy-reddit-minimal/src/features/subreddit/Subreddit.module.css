@@ -1,6 +1,6 @@
 .container{
     min-width: 250px;
-    height: 150px;
+    height: 900px;
 
     position: sticky;
     top: 0px;
@@ -17,16 +17,42 @@
 
 }
 
-.expandButton {
-    padding: 5px;
-    float:right;
-    margin-right: 5px;
-    font-weight: bold;
-    border-radius: 10px;
-    background-color: whitesmoke;
+.subredditList {
+    max-height: 2800px;
 }
 
-.expandButton:hover {
-    background-color: lightgray;
+.subredditTile {
+    display: grid;
+    grid-template-rows: 30px 20px;
+    grid-template-columns: 40px 100px;
+}
+
+.subredditTile:hover{
+    background-color: lightgrey;
     cursor: pointer;
+}
+
+.link{
+    color: black;
+    text-decoration: none;
+}
+
+.subredditName {
+    grid-row: 1 / 2;
+    grid-column: 2 / 3;
+}
+
+.subredditSubscribers {
+    grid-row: 2 / 3;
+    grid-column: 2 / 3;
+
+    font-size: 10px;
+}
+
+.subredditIcon {
+    width: 30px;
+    height: 30px;
+    grid-column: 1 / 2;
+    clip-path: circle();
+    margin: 0 auto;
 }

@@ -1,11 +1,26 @@
 import styles from './Subreddit.module.css';
+import React, { useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import {
+    selectAllSubreddits,
+    loadSubreddit,
+} from '../subreddit/subredditSlice.js';
+import SubredditListItem from '../../components/SubredditListItem';
 
 function Subreddit() {
+    const dispatch = useDispatch();
+    const subreddits = useSelector(selectAllSubreddits);
+    useEffect(() => {
+        dispatch(loadSubreddit())
+    }, [])
 
     return(
         <div className={styles.container}>
             <h2 className={styles.title}>Communities</h2>
-            <button className={styles.expandButton}>See more</button>
+            <div className={styles.subredditList}>{
+                subreddits.map((post) => (
+                    <SubredditListItem post={post} key={post.id}/>
+            ))}</div>
         </div>
     )
 }

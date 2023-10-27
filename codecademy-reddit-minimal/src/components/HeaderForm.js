@@ -1,12 +1,17 @@
 import styles from '../features/header/Header.module.css';
 import React, { useState } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
-
+import { useDispatch } from 'react-redux';
+import { loadSearch } from '../features/content/contentSlice.js';
 
 export default function HeaderForm(){
-
+    const dispatch = useDispatch();
     const [search, setSearch] = useState('');
-    const handleSubmit=(e)=>{};
+    const handleSubmit=(e)=>{
+        e.preventDefault();
+        if(search.length > 0){
+            dispatch(loadSearch({search: search}))
+        }
+    };
     return (
         <form onSubmit={handleSubmit} className={styles.form}>
             <input 
@@ -15,7 +20,7 @@ export default function HeaderForm(){
                 value={search}
                 onChange={(e) => setSearch(e.target.value)}
                 type='text'
-                placeholder='Search'
+                placeholder='Find a Subreddit'
             />
         </form>
     )

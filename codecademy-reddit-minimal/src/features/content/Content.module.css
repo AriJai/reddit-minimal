@@ -12,7 +12,7 @@
 
 .contentContainer{
     display: grid;
-    grid-template-rows: 10px 20px auto auto auto;
+    grid-template-rows: 20px auto auto auto auto auto auto;
     background-color: white;
     box-shadow: 5px 7px 10px gray;
     border-radius: 20px;
@@ -22,11 +22,31 @@
 }
 
 .image {
+    width: 100%;
     max-height: 500px;
     margin: auto;
+}
+.video {
+    width: 100%;
+    max-height: 500px;
+    background-color: black;
+    margin: auto;
+    border-radius: 20px;
+}
 
+.header{
+    display: grid;
+    grid-template-rows: auto auto;
+    margin-left: 10px;
 }
 
 .markdown {
+    width: 90%;
+    text-wrap: wrap;
     padding: 20px;
+}
+
+.link {
+    text-decoration: none;
+    color: black;
 }
