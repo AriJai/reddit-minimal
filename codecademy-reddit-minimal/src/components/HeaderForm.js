@@ -2,6 +2,7 @@ import styles from '../features/header/Header.module.css';
 import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { loadSearch } from '../features/content/contentSlice.js';
+import { loadSubreddit } from '../features/subreddit/subredditSlice.js';
 
 export default function HeaderForm(){
     const dispatch = useDispatch();
@@ -10,6 +11,7 @@ export default function HeaderForm(){
         e.preventDefault();
         if(search.length > 0){
             dispatch(loadSearch({search: search}))
+            dispatch(loadSubreddit({search: search}))
         }
     };
     return (

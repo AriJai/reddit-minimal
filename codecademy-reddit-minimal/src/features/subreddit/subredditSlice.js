@@ -2,8 +2,8 @@ import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 
 export const loadSubreddit = createAsyncThunk(
     'content/loadSubreddit', // action type
-    async () => {
-        const subredditField = await fetch(`https://www.reddit.com/search.json?q=popular&type=sr&limit=16`);
+    async ({search}) => {
+        const subredditField = await fetch(`https://www.reddit.com/search.json?q=${search}&type=sr&limit=16`);
         const json = await subredditField.json();
         return json.data.children.map((post) => post.data);
     }

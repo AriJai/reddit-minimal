@@ -11,8 +11,8 @@ function Subreddit() {
     const dispatch = useDispatch();
     const subreddits = useSelector(selectAllSubreddits);
     useEffect(() => {
-        dispatch(loadSubreddit())
-    }, [])
+        dispatch(loadSubreddit({search: 'popular'}))
+    }, [dispatch])
 
     return(
         <div className={styles.container}>

@@ -57,11 +57,14 @@
 }
 
 .commentButton:hover {
-    content: see comments;
     background-color: lightgrey;
 }
 
 .link {
     text-decoration: none;
     color: black;
+}
+
+.link:hover {
+    color: gray;
 }
