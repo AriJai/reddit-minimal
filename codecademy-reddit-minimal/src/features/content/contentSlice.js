@@ -5,7 +5,14 @@ export const loadPopular = createAsyncThunk(
     async () => {
         const popular = await fetch(`https://www.reddit.com/r/popular.json?limit=30`);
         const json = await popular.json();
-        return json.data.children.map((post) => post.data);
+        const postData = json.data.children.map((post) => post.data);
+        return postData.map((post) => ({
+            ...post,
+            showingComments: false,
+            comments: [],
+            CommentsLoading: false,
+            CommentsHasError: false,
+        }));
     }
 );
 
@@ -14,7 +21,25 @@ export const loadSearch = createAsyncThunk(
     async ({search}) => {
         const field = await fetch(`https://www.reddit.com/r/${search}.json?limit=30`);
         const json = await field.json();
-        return json.data.children.map((post) => post.data);
+        const postData = json.data.children.map((post) => post.data);
+        return postData.map((post) => ({
+            ...post,
+            showingComments: false,
+            comments: [],
+            CommentsLoading: false,
+            CommentsHasError: false,
+        }));
+    }
+);
+
+export const loadComments = createAsyncThunk(
+    'content/loadComments',
+    async ({index, permalink}) => {
+        console.log(index);
+        const comments = await fetch(`https://www.reddit.com${permalink}.json`);
+        const json = await comments.json();
+        const commentData = json[1].data.children.map((comment) => comment.data); 
+        return {index, commentData}
     }
 );
 
@@ -54,6 +79,19 @@ export const contentSlice = createSlice({
             state.isLoading = false;
             state.hasError = true;
             state.posts = [];
+        },
+        [loadComments.pending]:(state,action) =>{
+            //state.posts[action.payload.index].commentsLoading = true;
+            //state.posts[action.payload.index].commentsHasError = false;
+        },
+        [loadComments.fulfilled]:(state,action) =>{
+            //state.posts[action.payload.index].commentsLoading = false;
+            //state.posts[action.payload.index].commentsHasError = false;
+            state.posts[action.payload.index].comments = action.payload.commentData;
+        },
+        [loadComments.rejected]:(state,action) =>{
+            //state.posts[action.payload.index].commentsLoading = false;
+            //state.posts[action.payload.index].commentsHasError = true;
         },
     }
 });

@@ -2,10 +2,25 @@ import React from 'react';
 import styles from '../features/content/Content.module.css';
 import Markdown from 'react-markdown';
 import remarkGfm from 'remark-gfm';
+import {
+    commentsLoading,
+    commentsHasError,
+} from '../features/content/contentSlice.js';
+import CommentListItem from './CommentListItem.js';
 
+function ContentListItem({post, onToggleComments}) {
 
-function ContentListItem({post}) {
-
+    const renderComments = () => {
+        //if(!post.commentsLoading && !post.commentsHasError) {
+            return (
+                <div>
+                    {post.comments?.map((comment) => (
+                        <CommentListItem comment={comment} key={comment.id} />
+                    ))}
+                </div>
+            )
+        //}
+    };
 
     return (
         <article key={post.id} className={styles.contentContainer} >
@@ -43,7 +58,10 @@ function ContentListItem({post}) {
                     <div className={styles.markdown}><Markdown>{post.selftext}</Markdown></div> 
                     : null
             }
-            <button className={styles.commentButton}>{post.num_comments} comments</button>
+            <div className={styles.commentSection}>
+                <button type={'button'} className={styles.commentButton} onClick={() => onToggleComments(post.permalink)}>{post.num_comments} comments</button>
+                {renderComments()}
+            </div>
         </article>
     )
 };

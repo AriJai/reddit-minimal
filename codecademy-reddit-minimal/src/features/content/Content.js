@@ -4,9 +4,12 @@ import { useDispatch, useSelector } from 'react-redux';
 import {
     loadPopular,
     loadSearch,
+    loadComments,
     selectAllContents,
     isLoading,
     hasError,
+    commentsLoading,
+    commentsHasError,
 } from './contentSlice.js';
 import ContentListItem from '../../components/ContentListItem.js';
 
@@ -22,7 +25,12 @@ const Content = () => {
         dispatch(loadPopular());
     }, [dispatch]);
 
-
+    const onToggleComments = (index) => {
+        const getComments = (permalink) => {
+            dispatch(loadComments({index, permalink}));
+        }
+        return getComments;
+    };
 
     if (isLoadingContent){
         return <div style={{minWidth:'100%'}}>...Loading Reddit</div>
@@ -32,8 +40,8 @@ const Content = () => {
     }
     return (
         <section className={styles.container}>
-            {contentPreviews?.map((post) => (
-                <ContentListItem post={post} key={post.id}/>
+            {contentPreviews?.map((post, index) => (
+                <ContentListItem post={post} key={post.id} onToggleComments={onToggleComments(index)}/>
             ))}
         </section>
     )
