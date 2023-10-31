@@ -13,3 +13,15 @@ body {
   justify-content: center;
   margin-inline: 35%;
 }
+
+@media only screen and (max-width: 1400px){
+  .container{
+    margin-inline: 20%;
+  }
+}
+
+@media only screen and (max-width: 1000px){
+  .container{
+    margin-inline: 10%;
+  }
+}

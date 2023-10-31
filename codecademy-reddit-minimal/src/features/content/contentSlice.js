@@ -10,8 +10,8 @@ export const loadPopular = createAsyncThunk(
             ...post,
             showingComments: false,
             comments: [],
-            CommentsLoading: false,
-            CommentsHasError: false,
+            commentsLoading: false,
+            commentsHasError: false,
         }));
     }
 );
@@ -26,8 +26,8 @@ export const loadSearch = createAsyncThunk(
             ...post,
             showingComments: false,
             comments: [],
-            CommentsLoading: false,
-            CommentsHasError: false,
+            commentsLoading: false,
+            commentsHasError: false,
         }));
     }
 );
@@ -35,7 +35,6 @@ export const loadSearch = createAsyncThunk(
 export const loadComments = createAsyncThunk(
     'content/loadComments',
     async ({index, permalink}) => {
-        console.log(index);
         const comments = await fetch(`https://www.reddit.com${permalink}.json`);
         const json = await comments.json();
         const commentData = json[1].data.children.map((comment) => comment.data); 
@@ -85,8 +84,9 @@ export const contentSlice = createSlice({
             //state.posts[action.payload.index].commentsHasError = false;
         },
         [loadComments.fulfilled]:(state,action) =>{
-            //state.posts[action.payload.index].commentsLoading = false;
-            //state.posts[action.payload.index].commentsHasError = false;
+            state.posts[action.payload.index].commentsLoading = false;
+            state.posts[action.payload.index].commentsHasError = false;
+            state.posts[action.payload.index].showingComments = true;
             state.posts[action.payload.index].comments = action.payload.commentData;
         },
         [loadComments.rejected]:(state,action) =>{

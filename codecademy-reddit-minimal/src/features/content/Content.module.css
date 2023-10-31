@@ -43,9 +43,14 @@
 }
 
 .markdown {
-    width: 90%;
-    text-wrap: wrap;
-    padding: 20px;
+    overflow-wrap: break-word;
+    word-wrap: break-word;
+    -ms-word-break: break-all;
+    word-break: break-word;
+    -ms-hyphens: auto;
+    -moz-hyphens: auto;
+    -webkit-hyphens: auto;
+    hyphens: auto;
 }
 
 .commentButton {
@@ -70,5 +75,33 @@
 }
 
 .commentSection {
-    
+    max-height: 700px;
+    padding: 5px;
+    overflow-y: scroll;
+}
+
+.commentContainer{
+    display: grid;
+    padding: 10px;
+    border-bottom: 1px dotted gray;
+    grid-template-rows: auto auto;
+    grid-template-columns: 10px auto;
+}
+
+.commentBody {
+    grid-row: 2/3;
+    grid-column: 2/3;
+    overflow-wrap: break-word;
+    word-wrap: break-word;
+    -ms-word-break: break-all;
+    word-break: break-word;
+    -ms-hyphens: auto;
+    -moz-hyphens: auto;
+    -webkit-hyphens: auto;
+    hyphens: auto;
+}
+
+.commentAuthor {
+    grid-row: 1/2;
+    grid-column: 1/3;
 }

@@ -40,3 +40,11 @@ span {
   display: flex;
   flex-grow: 1;
 }
+
+@media only screen and (max-width: 650px){
+  header{
+    display: inline-block;
+    text-align: center;
+    height: 100px;
+  }
+}
