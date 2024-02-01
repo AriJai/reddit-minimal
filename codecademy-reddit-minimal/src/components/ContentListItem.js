@@ -1,19 +1,20 @@
 import React from 'react';
 import styles from '../features/content/Content.module.css';
 import Markdown from 'react-markdown';
-import CommentListItem from './CommentListItem.js';
+import CommentListItem from './CommentListItem.js';import {toggleComments} from '../features/content/contentSlice.js';
+import { useDispatch, useSelector } from 'react-redux';
 
-function ContentListItem({post, onToggleComments}) {
-
+function ContentListItem({post, onLoadComments, onToggleComments}) {
+    const dispatch = useDispatch();
     const renderComments = () => {
-        return (
+        if (post.showingComments){ 
+        return ( 
             <div className={styles.commentSection}>
-                <button type={'button'} className={styles.commentButton} onClick={() => onToggleComments(post.permalink)}>{post.num_comments} comments</button>
                 {post.comments?.map((comment) => (
                         <CommentListItem comment={comment} key={comment.id} />
                     ))}
             </div>
-        )
+        )} else {return null}
     };
 
     return (
@@ -24,18 +25,6 @@ function ContentListItem({post, onToggleComments}) {
             </div>
             <h2 className={styles.title}><a className={styles.link} href={`https://www.reddit.com${post.permalink}`} target={'_blank'}>{post.title}</a></h2>
             {
-                post.url.includes(`.jpg`) &&
-                    <img src={post.url} className={styles.image} alt='' />
-            }
-            {
-                post.url.includes(`.png`) &&
-                    <img src={post.url} className={styles.image} alt='' />
-            }
-            {
-                post.url.includes(`.jpeg`) &&
-                    <img src={post.url} className={styles.image} alt='' />
-            }
-            {
                 post.is_video ? 
                     <video 
                         controls 
@@ -45,12 +34,17 @@ function ContentListItem({post, onToggleComments}) {
                         <source src={post.media?.reddit_video.scrubber_media_url.replace("DASH_96.mp4", "DASH_AUDIO_128.mp4")}/>
                         <a href={post.media?.reddit_video.scrubber_media_url}></a>
                     </video>
-                    : null
+                    : <img src={post.preview?.images[0].source.url} className={styles.image} alt='' />
             }
             {
                 post.selftext ? 
                     <div className={styles.markdown}><Markdown>{post.selftext}</Markdown></div> 
                     : null
+            }
+            {
+                post.showingComments ? 
+                <button type={'button'} className={styles.commentButton} onClick={() => onToggleComments(post.permalink)}>hide comments</button> :
+                <button type={'button'} className={styles.commentButton} onClick={() => onLoadComments(post.permalink)}>{post.num_comments} comments</button>
             }
             {
                 renderComments()

@@ -24,6 +24,11 @@ export default function HeaderForm(){
                 type='text'
                 placeholder='Find a Subreddit e.g. "popular"'
             />
+            <button
+                className={styles.formSubmit}
+                type='submit'
+                value="Search"
+            >Search</button>
         </form>
     )
 }

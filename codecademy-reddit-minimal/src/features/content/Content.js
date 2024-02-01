@@ -8,6 +8,7 @@ import {
     selectAllContents,
     isLoading,
     hasError,
+    toggleComments,
     commentsLoading,
     commentsHasError,
 } from './contentSlice.js';
@@ -25,23 +26,29 @@ const Content = () => {
         dispatch(loadPopular());
     }, [dispatch]);
 
-    const onToggleComments = (index) => {
+    const onLoadComments = (index) => {
         const getComments = (permalink) => {
             dispatch(loadComments({index, permalink}));
         }
         return getComments;
     };
+    const onToggleComments = (index) => {
+        const getComments = (permalink) => {
+            dispatch(toggleComments({index, permalink}));
+        }
+        return getComments;
+    };
 
     if (isLoadingContent){
-        return <div style={{minWidth:'100%'}}>...Loading Reddit</div>
+        return <div style={{width:'100%', fontSize:"50px"}}>...Loading Reddit</div>
     }
     else if (containsError){
-        return <div style={{minWidth:'100%'}}>...Sorry, this subreddit is unavailable!</div>
+        return <div style={{width:'100%', fontSize:"50px"}}>...Sorry, this subreddit is unavailable!</div>
     }
     return (
         <section className={styles.container}>
             {contentPreviews?.map((post, index) => (
-                <ContentListItem post={post} key={post.id} onToggleComments={onToggleComments(index)}/>
+                <ContentListItem post={post} key={post.id} onLoadComments={onLoadComments(index)} onToggleComments={onToggleComments(index)}/>
             ))}
         </section>
     )

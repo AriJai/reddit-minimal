@@ -3,7 +3,7 @@ import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 export const loadPopular = createAsyncThunk(
     'content/loadPopular', // action type
     async () => {
-        const popular = await fetch(`https://www.reddit.com/r/popular.json?limit=30`);
+        const popular = await fetch(`https://www.reddit.com/r/popular.json?limit=30&raw_json=1`);
         const json = await popular.json();
         const postData = json.data.children.map((post) => post.data);
         return postData.map((post) => ({
@@ -19,7 +19,7 @@ export const loadPopular = createAsyncThunk(
 export const loadSearch = createAsyncThunk(
     'content/loadSearch', // action type
     async ({search}) => {
-        const field = await fetch(`https://www.reddit.com/r/${search}.json?limit=30`);
+        const field = await fetch(`https://www.reddit.com/r/${search}.json?limit=30&raw_json=1`);
         const json = await field.json();
         const postData = json.data.children.map((post) => post.data);
         return postData.map((post) => ({
@@ -38,17 +38,22 @@ export const loadComments = createAsyncThunk(
         const comments = await fetch(`https://www.reddit.com${permalink}.json`);
         const json = await comments.json();
         const commentData = json[1].data.children.map((comment) => comment.data); 
-        return {index, commentData}
+        return {index, commentData};
     }
 );
 
 
 export const contentSlice = createSlice({
-    name: "content'",
+    name: "content",
     initialState: {
         posts: [],
         isLoading: false,
         hasError: false,
+    },
+    reducers: {
+        toggleComments(state,action) {
+            state.posts[action.payload.index].showingComments = !state.posts[action.payload.index].showingComments;
+        },
     },
     extraReducers: {
         [loadPopular.pending]:(state,action) =>{
@@ -101,5 +106,7 @@ export const selectAllContents = (state) => state.content.posts;
 export const isLoading = (state) => state.content.isLoading;
 
 export const hasError = (state) => state.content.hasError;
+
+export const {toggleComments} = contentSlice.actions;
 
 export default contentSlice.reducer;

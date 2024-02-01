@@ -1,6 +1,6 @@
 header {
   background-color: white;
-  height: 75px;
+  height: 150px;
   width: 100%;
   box-shadow: 5px 7px 10px gray;
   margin-bottom: 20px;
@@ -12,13 +12,16 @@ header {
   
 .header {
   margin: 0px 20px;
-  height: 30px;
 }
 
 .logo{
   color: orangered;
   font-family: sans-serif;
-  flex-grow: 0;
+  font-size: 45px;
+}
+
+.logo:hover{
+  cursor:pointer;
 }
 
 span {
@@ -28,11 +31,20 @@ span {
 
 .button {
   flex-grow: 0;
+  height: 40px;
+  padding: 5px;
+  margin-top: 5px;
+  border-radius: 5px;
+  font-size: 16px;
+  font-weight: bold;
+  background: orangered;
 }
 
 .search {
   border-radius: 25px;
   text-indent: 10px;
+  height: 50px;
+  font-size: 20px;
   flex-grow: 1;
 }
 
@@ -41,10 +53,41 @@ span {
   flex-grow: 1;
 }
 
-@media only screen and (max-width: 650px){
-  header{
-    display: inline-block;
+.formSubmit {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  margin-top: 10px;
+  width: 50px;
+  height: 30px;
+  border-radius: 5px;
+  font-size: 14px;
+  font-weight: bold;
+  background: orangered;
+}
+
+@media only screen and (max-width: 865px){
+  .logo {
     text-align: center;
-    height: 100px;
+    font-size: 20px;
+    width: 100%;
+    margin: 0;
+  }
+  .button {
+    display: none;
+  }
+  .header {
+    margin: 0 auto;
+  }
+  .search {
+    width: 85%;
+    font-size: 15px;
+  }
+  .form {
+    display: block;
+    text-align: center;
+  }
+  .formSubmit{
+    margin: 10px auto 0px auto;
   }
 }

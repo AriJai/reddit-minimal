@@ -16,7 +16,7 @@ function Subreddit() {
 
     return(
         <div className={styles.container}>
-            <h2 className={styles.title}>Communities</h2>
+            <h2 className={styles.title}>Communities based off search:</h2>
             <div className={styles.subredditList}>{
                 subreddits.map((post) => (
                     <SubredditListItem post={post} key={post.id}/>

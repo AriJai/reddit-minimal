@@ -14,7 +14,7 @@ function App() {
     <div className="App">
       <Header />
       <main className="container">
-        <Sidebar />
+        
         <Content />
         <Subreddit />
       </main>

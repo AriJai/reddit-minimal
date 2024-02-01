@@ -19,7 +19,7 @@ function Header(){
 
     return(
         <header>
-            <h1 className={`${styles.header} ${styles.logo}`}>Reddit<span>Minimal</span></h1>
+            <h1 className={`${styles.header} ${styles.logo}`} onClick={() => {window.location.reload()}}>Reddit<span>Minimal</span></h1>
             <HeaderForm onSearchRequest={handleSubmit}/>
             <button className={`${styles.header} ${styles.button}`} onClick={handleRedirect}>See Reddit</button>
         </header>
