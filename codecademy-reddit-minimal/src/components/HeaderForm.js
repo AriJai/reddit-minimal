@@ -22,6 +22,7 @@ export default function HeaderForm(){
                 value={search}
                 onChange={(e) => setSearch(e.target.value)}
                 type='text'
+                autoComplete='off'
                 placeholder='Find a Subreddit e.g. "popular"'
             />
             <button

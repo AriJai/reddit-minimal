@@ -8,12 +8,12 @@ function ContentListItem({post, onLoadComments, onToggleComments}) {
     const dispatch = useDispatch();
     const renderComments = () => {
         if (post.showingComments){ 
-        return ( 
-            <div className={styles.commentSection}>
-                {post.comments?.map((comment) => (
-                        <CommentListItem comment={comment} key={comment.id} />
-                    ))}
-            </div>
+            return ( 
+                <div className={styles.commentSection}>
+                    {post.comments?.map((comment) => (
+                            <CommentListItem comment={comment} key={comment.id} />
+                        ))}
+                </div>
         )} else {return null}
     };
 
@@ -37,12 +37,17 @@ function ContentListItem({post, onLoadComments, onToggleComments}) {
                     : <img src={post.preview?.images[0].source.url} className={styles.image} alt='' />
             }
             {
+                post.media_metadata ? 
+                <img src={post.media_metadata[post.gallery_data?.items[0].media_id]?.p[3]?.u} className={styles.image}/>
+                : null
+            }
+            {
                 post.selftext ? 
                     <div className={styles.markdown}><Markdown>{post.selftext}</Markdown></div> 
                     : null
             }
             {
-                post.showingComments ? 
+                post.showingComments? 
                 <button type={'button'} className={styles.commentButton} onClick={() => onToggleComments(post.permalink)}>hide comments</button> :
                 <button type={'button'} className={styles.commentButton} onClick={() => onLoadComments(post.permalink)}>{post.num_comments} comments</button>
             }
