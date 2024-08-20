@@ -1,15 +1,15 @@
 {
   "files": {
-    "main.css": "/reddit-minimal/static/css/main.329f4719.css",
-    "main.js": "/reddit-minimal/static/js/main.7a9f0c9f.js",
+    "main.css": "/reddit-minimal/static/css/main.30d7cfda.css",
+    "main.js": "/reddit-minimal/static/js/main.1dc3d83c.js",
     "static/js/787.1242ce68.chunk.js": "/reddit-minimal/static/js/787.1242ce68.chunk.js",
     "index.html": "/reddit-minimal/index.html",
-    "main.329f4719.css.map": "/reddit-minimal/static/css/main.329f4719.css.map",
-    "main.7a9f0c9f.js.map": "/reddit-minimal/static/js/main.7a9f0c9f.js.map",
+    "main.30d7cfda.css.map": "/reddit-minimal/static/css/main.30d7cfda.css.map",
+    "main.1dc3d83c.js.map": "/reddit-minimal/static/js/main.1dc3d83c.js.map",
     "787.1242ce68.chunk.js.map": "/reddit-minimal/static/js/787.1242ce68.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.329f4719.css",
-    "static/js/main.7a9f0c9f.js"
+    "static/css/main.30d7cfda.css",
+    "static/js/main.1dc3d83c.js"
   ]
 }
