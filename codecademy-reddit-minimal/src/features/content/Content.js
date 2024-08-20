@@ -9,6 +9,7 @@ import {
     isLoading,
     hasError,
     toggleComments,
+    toggleReply,
     commentsLoading,
     commentsHasError,
 } from './contentSlice.js';
@@ -24,7 +25,7 @@ const Content = () => {
     const containsError = useSelector(hasError)
     useEffect(() => {
         dispatch(loadPopular());
-    }, [dispatch]);
+    }, []);
 
     const onLoadComments = (index) => {
         const getComments = (permalink) => {
@@ -33,11 +34,13 @@ const Content = () => {
         return getComments;
     };
     const onToggleComments = (index) => {
-        const getComments = (permalink) => {
-            dispatch(toggleComments({index, permalink}));
+        const getComments = () => {
+            dispatch(toggleComments({index}));
         }
         return getComments;
     };
+
+    
 
     if (isLoadingContent){
         return <div style={{width:'100%', fontSize:"50px"}}>...Loading Reddit</div>
@@ -47,8 +50,13 @@ const Content = () => {
     }
     return (
         <section className={styles.container}>
-            {contentPreviews?.map((post, index) => (
-                <ContentListItem post={post} key={post.id} onLoadComments={onLoadComments(index)} onToggleComments={onToggleComments(index)}/>
+            {contentPreviews?.map((posts, indexPosts) => (
+                <ContentListItem 
+                    post={posts} 
+                    key={indexPosts}
+                    postId={indexPosts} 
+                    onLoadComments={onLoadComments(indexPosts)} 
+                    onToggleComments={onToggleComments(indexPosts)}/>
             ))}
         </section>
     )
