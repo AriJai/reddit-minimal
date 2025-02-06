@@ -47,7 +47,6 @@ function ContentListItem({ props, postId, post, onLoadComments, onToggleComments
             //console.log(galleryData, mediaMetadata[galleryData[0]].p[mediaMetadata[galleryData[0]].p.length-1].u);
             for( const [key, value] of Object.entries(mediaMetadata)) {
                 if( galleryData.includes(key)) {
-                    console.log(key, value, value.p?.length - 1)
                     if( value.status === 'valid' ) {
                         images.push({key: key, value: value.p?.length - 1})
                     }

@@ -9,12 +9,24 @@ export const loadSubreddit = createAsyncThunk(
     }
 );
 
+export const searchSubreddit = createAsyncThunk(
+    'content/searchSubreddit', // action type
+    async ({search}) => {
+        if (!search) return [];
+        const subredditField = await fetch(`https://www.reddit.com/search.json?q=${search}&type=sr&limit=16&raw_json=1`);
+        const json = await subredditField.json();
+        return json.data.children.map((post) => post.data);
+    }
+);
+
 export const subredditSlice = createSlice({
-    name: "subreddit'",
+    name: "subreddit",
     initialState: {
+        search: [],
         categories: [],
         isLoading: false,
         hasError: false,
+        error: null,
     },
     extraReducers: {
         [loadSubreddit.pending]:(state,action) =>{
@@ -30,11 +42,29 @@ export const subredditSlice = createSlice({
             state.isLoading = false;
             state.hasError = true;
             state.categories = [];
+            state.error = action.error.message;
+        },
+        [searchSubreddit.pending]:(state,action) =>{
+            state.isLoading = true;
+            state.hasError = false;
+        },
+        [searchSubreddit.fulfilled]:(state,action) =>{
+            state.isLoading = false;
+            state.hasError = false;
+            state.search = action.payload;
+        },
+        [searchSubreddit.rejected]:(state,action) =>{
+            state.isLoading = false;
+            state.hasError = true;
+            state.search = [];
+            state.error = action.error.message;
         },
     }
 });
 
 export const selectAllSubreddits = (state) => state.subreddit.categories;
+
+export const selectSearchSubreddits = (state) => state.subreddit.search;
 
 export const isLoading = (state) => state.subreddit.isLoading;
 

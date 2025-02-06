@@ -1,6 +1,6 @@
 header {
   background-color: white;
-  height: 150px;
+  min-height: 150px;
   width: 100%;
   box-shadow: 5px 7px 10px gray;
   margin-bottom: 20px;
@@ -50,7 +50,16 @@ span {
 
 .form {
   display: flex;
+  width: 100%;
   flex-grow: 1;
+}
+
+.formWrap {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-grow: 1;
+  flex-direction: column;
 }
 
 .formSubmit {
@@ -64,6 +73,25 @@ span {
   font-size: 14px;
   font-weight: bold;
   background: orangered;
+}
+
+.searchIndex {
+  position: relative;
+  background: white;
+  width: 100%;
+}
+
+.subredditListItem {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 40px;
+  gap: 12px;
+}
+
+.subredditListItem:hover {
+  background-color:lightgray;
+  cursor: pointer;
 }
 
 @media only screen and (max-width: 865px){

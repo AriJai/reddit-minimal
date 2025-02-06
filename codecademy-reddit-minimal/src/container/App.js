@@ -8,15 +8,16 @@ import Sidebar from '../features/sidebar/Sidebar.js';
 
 function App() {
 
-  
+
 
   return (
     <div className="App">
       <Header />
-      <main className="container">
-        
-        <Content />
-        <Subreddit />
+      <main className="wrap">
+        <div className="content container">
+          <Content />
+          <Subreddit />
+        </div>
       </main>
     </div>
   );

@@ -8,14 +8,28 @@ body {
   background-color: whitesmoke;
 }
 
+.wrap {
+  width: 100%;
+  max-width: 100%;
+  box-sizing: border-box;
+  display: flex;
+  justify-content: center;
+  height: inherit;
+}
+
+.content {
+  height: inherit;
+  width: 100%;
+  max-width: 90%;
+}
+
 .container{
   display: flex;
   justify-content: center;
-  margin-inline: 8%;
 }
 
 @media only screen and (max-width: 1000px){
   .container{
-    margin-inline: 5%;
+    flex-direction: column;
   }
 }
