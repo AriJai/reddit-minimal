@@ -75,7 +75,7 @@
     overflow-y: scroll;
     padding: 0px 20px;
     font-size: 14px;
-    
+    word-wrap: break-word;
     scrollbar-color: orangered transparent;
     scrollbar-width: thin;
 }
@@ -118,6 +118,8 @@
 
     scrollbar-color: orangered transparent;
     scrollbar-width: thin;
+
+    
 }
 
 .commentContainer{
@@ -176,4 +178,38 @@
         font-size: 12px;
     }
 
+}
+
+@keyframes openComment {
+    0% {
+        opacity: 0;
+        height: 0;
+        position: relative;
+        top: 20px;
+        transition: all 1s linear;
+    }
+
+    100% {
+        opacity: 1;
+        height: 100%;
+        position: initial;
+        top: 0px;
+    }
+}
+
+@keyframes hideComment {
+    100% {
+        opacity: 0;
+        height: 0;
+        position: relative;
+        top: 20px;
+    }
+
+    0% {
+        opacity: 1;
+        height: 100%;
+        position: initial;
+        top: 0px;
+        transition: all 1s linear;
+    }
 }

@@ -5,7 +5,6 @@ import styles from "../features/header/Header.module.css"
 
 export default function HeaderFormSubredditList({post, handleClick}) {
 
-    console.log(post)
     const image = (post) => {
         if (!post.community_icon) {
             return (
@@ -23,6 +22,5 @@ export default function HeaderFormSubredditList({post, handleClick}) {
             <h4><Markdown>{post.display_name_prefixed}</Markdown></h4>
         </div>
     )
-
 
 };

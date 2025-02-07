@@ -44,7 +44,6 @@ function ContentListItem({ props, postId, post, onLoadComments, onToggleComments
             for( const item in post.gallery_data.items) {
                 galleryData.push( post.gallery_data.items[item].media_id );
             }
-            //console.log(galleryData, mediaMetadata[galleryData[0]].p[mediaMetadata[galleryData[0]].p.length-1].u);
             for( const [key, value] of Object.entries(mediaMetadata)) {
                 if( galleryData.includes(key)) {
                     if( value.status === 'valid' ) {
@@ -52,7 +51,6 @@ function ContentListItem({ props, postId, post, onLoadComments, onToggleComments
                     }
                 }
             }
-            console.log(images);
             return (
                 <div className={styles.gallery}>
                     {images.map((item, index) => 

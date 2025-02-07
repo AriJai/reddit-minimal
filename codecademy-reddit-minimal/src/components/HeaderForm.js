@@ -3,7 +3,6 @@ import React, { useState, useRef, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { loadSearch } from '../features/content/contentSlice.js';
 import { loadSubreddit, searchSubreddit, selectSearchSubreddits } from '../features/subreddit/subredditSlice.js';
-import Markdown from 'react-markdown';
 import HeaderFormSubredditList from './HeaderFormSubredditList.js';
 
 export default function HeaderForm() {
@@ -43,7 +42,6 @@ export default function HeaderForm() {
         }
 
         timeoutRef.current = setTimeout(() => {
-            console.log('searching', search)
             dispatchSubreddit(search);
         }, 1200);
     };
