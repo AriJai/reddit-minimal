@@ -26,6 +26,8 @@ export const subredditSlice = createSlice({
         categories: [],
         isLoading: false,
         hasError: false,
+        searchIsLoading: false,
+        searchHasError: false,
         error: null,
     },
     extraReducers: {
@@ -45,17 +47,17 @@ export const subredditSlice = createSlice({
             state.error = action.error.message;
         },
         [searchSubreddit.pending]:(state,action) =>{
-            state.isLoading = true;
-            state.hasError = false;
+            state.searchIsLoading = true;
+            state.searchHasError = false;
         },
         [searchSubreddit.fulfilled]:(state,action) =>{
-            state.isLoading = false;
-            state.hasError = false;
+            state.searchIsLoading = false;
+            state.searchHasError = false;
             state.search = action.payload;
         },
         [searchSubreddit.rejected]:(state,action) =>{
-            state.isLoading = false;
-            state.hasError = true;
+            state.searchIsLoading = false;
+            state.searchHasError = true;
             state.search = [];
             state.error = action.error.message;
         },
@@ -69,5 +71,9 @@ export const selectSearchSubreddits = (state) => state.subreddit.search;
 export const isLoading = (state) => state.subreddit.isLoading;
 
 export const hasError = (state) => state.subreddit.hasError;
+
+export const searchIsLoading = (state) => state.subreddit.searchIsLoading;
+
+export const searchHasError = (state) => state.subreddit.searchHasError;
 
 export default subredditSlice.reducer;

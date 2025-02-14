@@ -9,18 +9,6 @@ export default function HeaderForm() {
     const dispatch = useDispatch();
     const [search, setSearch] = useState('');
     const timeoutRef = useRef(null);
-    const [subredditList, setSubredditList] = useState([]);
-    const [isLoaded, setIsLoaded] = useState(false);
-    const subredditsfromSearch = useSelector(selectSearchSubreddits);
-
-    useEffect(() => {
-        if (subredditsfromSearch && search.length > 0) {
-            setIsLoaded(true);
-            setSubredditList(subredditsfromSearch);
-        } else {
-            setIsLoaded(false);
-        }
-    }, [subredditsfromSearch])
 
     const handleSubmit = (e) => {
         e.preventDefault();
@@ -43,13 +31,12 @@ export default function HeaderForm() {
 
         timeoutRef.current = setTimeout(() => {
             dispatchSubreddit(search);
-        }, 1200);
+        }, 1000);
     };
 
     const handleSubredditSearch = (subredditName) => {
         setSearch("");
         clearTimeout(timeoutRef.current);
-        setSubredditList([]);
         dispatch(loadSearch({ search: subredditName }))
         dispatch(loadSubreddit({ search: subredditName }))
     };
@@ -73,15 +60,9 @@ export default function HeaderForm() {
                     value="Search"
                 >Search</button>
             </form>
-            {
-                isLoaded ?
-                    <div className={styles.searchIndex}>
-                        {subredditList.slice(0, 5).map((subreddit, index) => (
-                            <HeaderFormSubredditList post={subreddit} key={index} handleClick={handleSubredditSearch} />
-                        ))}
-                    </div> :
-                    <></>
-            }
+            <div className={styles.searchIndex}>
+                <HeaderFormSubredditList handleClick={handleSubredditSearch} />
+            </div>
         </div>
     )
 }
