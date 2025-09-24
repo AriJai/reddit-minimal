@@ -6,37 +6,51 @@ import { loadSubreddit, searchSubreddit, selectSearchSubreddits } from '../featu
 import HeaderFormSubredditList from './HeaderFormSubredditList.js';
 
 export default function HeaderForm() {
+    const formRef = useRef(null)
     const dispatch = useDispatch();
     const [search, setSearch] = useState('');
-    const timeoutRef = useRef(null);
+    const [inputText, setInputText] = useState('');
+    const [timer, setTimer] = useState(null);
+    const delay = 900;
+
+    useEffect(() => {
+        if (timer) {
+            clearTimeout(timer);
+        }
+
+        const newTimer = setTimeout(() => {
+            setSearch(inputText);
+        }, delay);
+
+        setTimer(newTimer);
+
+        return () => clearTimeout(newTimer);
+    }, [inputText])
+
+    useEffect(() => {
+        dispatchSubreddit();
+    }, [search]);
+    
 
     const handleSubmit = (e) => {
-        e.preventDefault();
-        if (search.length > 0) {
-            dispatch(loadSearch({ search: search }))
-            dispatch(loadSubreddit({ search: search }))
+        e.preventDefault()
+        if (inputText.length > 0) {
+            dispatch(loadSearch({ search: inputText }))
+            dispatch(loadSubreddit({ search: inputText }))
         }
     };
-    const dispatchSubreddit = (text) => {
-        dispatch(searchSubreddit({ search: text }));
+
+    const dispatchSubreddit = () => {
+        dispatch(searchSubreddit({ search: search }));
     };
 
-
-    const handleSearch = (text) => {
-        setSearch(text);
-
-        if (timeoutRef.current) {
-            clearTimeout(timeoutRef.current);
-        }
-
-        timeoutRef.current = setTimeout(() => {
-            dispatchSubreddit(search);
-        }, 1000);
+    const handleChange = (e) => {
+        setInputText(e.target.value);
     };
 
     const handleSubredditSearch = (subredditName) => {
         setSearch("");
-        clearTimeout(timeoutRef.current);
+
         dispatch(loadSearch({ search: subredditName }))
         dispatch(loadSubreddit({ search: subredditName }))
     };
@@ -48,8 +62,8 @@ export default function HeaderForm() {
                 <input
                     className={`${styles.header} ${styles.search}`}
                     id="searchTerm"
-                    value={search}
-                    onChange={(e) => { handleSearch(e.target.value); }}
+                    value={inputText}
+                    onChange={handleChange}
                     type='text'
                     autoComplete='off'
                     placeholder='Find a Subreddit e.g. "popular"'
