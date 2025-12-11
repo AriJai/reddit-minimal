@@ -50,7 +50,7 @@ A user-friendly, Reddit browsing experience built with React and Redux. Reddit M
 ### Installation
 1. Clone the repository:
 ```bash
-git clone https://github.com/yourusername/reddit-minimal.git
+git clone https://github.com/AriJai/reddit-minimal.git
 cd reddit-minimal
 ```
 2. Install dependencies:
